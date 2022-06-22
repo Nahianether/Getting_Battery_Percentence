@@ -1,6 +1,7 @@
 import UIKit
 import Flutter
 import AudioToolbox
+
 enum ChannelName {
   static let battery = "samples.flutter.io/battery"
   static let charging = "samples.flutter.io/charging"
@@ -287,5 +288,25 @@ feedbackGenerator.impactOccurred()
 		timerCounting = val
 		userDefaults.set(timerCounting, forKey: COUNTING_KEY)
 	}
+
+	 let manager = SocketManager(socketURL: URL(string: 
+ "http://xxxxxxxxx.com")!, config: [.log(true), .compress])
+ var socket = manager.defaultSocket
+
+socket.connect()
+    socket.on(clientEvent: .connect) {data, ack in
+        print("socket connected")
+        self.gotConnection()
+       }
+    }
+
+ func gotConnection(){
+
+ socket.on("new message here") { (dataArray, ack) in
+
+    print(dataArray.count)
+
+     }
+   }
 
 }
